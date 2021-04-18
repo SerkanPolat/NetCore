@@ -1,12 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NetCore.Interfaces;
-using NetCore.Repositories;
-using NetCore.Repositories.Dapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace NetCore.Controllers
 {
@@ -14,7 +8,7 @@ namespace NetCore.Controllers
 	[ApiController]
 	public class UrunController : ControllerBase
 	{
-		IUrunRepository _urunRepository;
+		private readonly IUrunRepository _urunRepository;
 		public UrunController(IUrunRepository urunRepository)
 		{
 			_urunRepository = urunRepository;

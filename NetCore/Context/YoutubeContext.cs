@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using NetCore.Entities;
 using System;
 using System.Collections.Generic;
@@ -7,11 +8,12 @@ using System.Threading.Tasks;
 
 namespace NetCore.Context
 {
-	public class YoutubeContext : DbContext
+	public class YoutubeContext : IdentityDbContext<AppUser>
 	{
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
 			optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;database=testCore;Integrated Security=True;");
+			base.OnConfiguring(optionsBuilder); 
 		}
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
@@ -26,6 +28,7 @@ namespace NetCore.Context
 				I.KategoriId,
 				I.UrunId
 			}).IsUnique();
+			base.OnModelCreating(modelBuilder);
 		}
 		public DbSet<UrunKategori> UrunKategoriler { get; set; }
 		public DbSet<Urun> Urunler { get; set; }
