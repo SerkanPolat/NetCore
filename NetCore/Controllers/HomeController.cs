@@ -20,6 +20,13 @@ namespace NetCore.Controllers
 		public IActionResult Index()
 		{
 			SetCookie("serkan", "Cookiedeki Bilgi");
+
+			AppUser app = new AppUser();
+			HttpContext.Session.SetObject("deneme", app);
+
+			var s = HttpContext.Session.GetObject<AppUser>("deneme");
+
+
 			return View();
 		}
 		public IActionResult Login()
